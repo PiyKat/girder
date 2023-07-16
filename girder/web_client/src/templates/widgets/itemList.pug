@@ -3,6 +3,8 @@ ul.g-item-list
     li.g-item-list-entry(class=(highlightItem && item.id === selectedItemId ? 'g-selected' : ''), public=(isParentPublic ? 'true' : 'false'))
       if checkboxes
         input.g-list-checkbox(type="checkbox", g-item-cid=item.cid)
+      
+
       if downloadLinks || viewLinks
         a.g-item-list-link.g-right-border(g-item-cid=item.cid, href=`#item/${item.id}`)
           i.icon-doc-text-inv
@@ -11,13 +13,15 @@ ul.g-item-list
         a.g-item-list-link(g-item-cid=item.cid, href='#item/' + item.id)
           i.icon-doc-text-inv
           = item.name()
-      if downloadLinks
+
+      //if downloadLinks
         a(title="Download item", href=item.downloadUrl())
           i.icon-download
-      if viewLinks
+      //if viewLinks
         a.g-view-inline(title="View in browser", target="_blank", rel="noopener noreferrer",
             href=item.downloadUrl({contentDisposition: 'inline'}))
           i.icon-eye
+      
       if showSizes
         .g-item-size= formatSize(item.get('size'))
   if (hasMore && !paginated)
